@@ -16,7 +16,7 @@ const SearchBox: FC<SearchBoxProps> = ({ value, onChange }): JSX.Element => (
         value={value}
         onChange={onChange}
         type="text"
-        placeholder="Search starships"
+        placeholder="Search starship by name or model"
       />
     </Box>
   </Box>

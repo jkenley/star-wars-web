@@ -1,7 +1,6 @@
 {
     "name": "star-wars-web",
     "version": "0.1.0",
-    "private": true,
     "main": "N/A",
     "description": "Star Wars Web",
     "license": "MIT",
@@ -11,7 +10,9 @@
         "dev": "next",
         "build": "next build",
         "start": "next start",
-        "type-check": "tsc"
+        "type-check": "tsc",
+        "lint": "next lint",
+        "deploy:main": "git push -u origin main"
     },
     "dependencies": {
         "@chakra-ui/react": "^2.4.2",
@@ -29,7 +30,10 @@
         "@types/node": "^12.12.21",
         "@types/react": "^17.0.2",
         "@types/react-dom": "^17.0.1",
-        "typescript": "^4.8.3"
+        "eslint": "^8.29.0",
+        "eslint-config-next": "^13.0.6",
+        "eslint-config-prettier": "^8.5.0",
+        "typescript": "^4.9.4"
     },
     "type-check": {
         "tsconfig": "./tsconfig.json"

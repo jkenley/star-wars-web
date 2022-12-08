@@ -23,6 +23,8 @@ import StarshipList from "@components/StarshipList";
 import VehicleList from "@components/VehicleList";
 import SpeciesList from "@components/SpeciesList";
 import BackButton from "@components/BackButton";
+import PageHead from "@components/PageHead";
+import { BASE_URL, ROUTE } from "@utils/constants";
 
 const CharacterDetailsPage: NextPage = (): JSX.Element => {
   const router = useRouter();
@@ -60,17 +62,16 @@ const CharacterDetailsPage: NextPage = (): JSX.Element => {
 
   if (!id) return null;
 
-  // const { data, error } = useSWR(
-  //   id ? `https://swapi.dev/api/people/${id}` : null,
-  //   fetcher
-  // );
-
-  // if (error) return <div>Failed to load</div>;
-  // if (!data) return <div>Loading...</div>;
-
   return (
     <>
-      <BackButton href="/" />
+      <BackButton />
+
+      <PageHead
+        title="Star Wars - Characters"
+        description="Characters Page Description"
+        url={`${BASE_URL}${ROUTE.PEOPLE}/${id}`}
+      />
+
       <Layout maxWidth="960px">
         <Box mt={12} mb={32}>
           {loading.page === "characterPage" && loading.status ? (

@@ -21,6 +21,8 @@ import StarshipList from "@components/StarshipList";
 import VehicleList from "@components/VehicleList";
 import SpeciesList from "@components/SpeciesList";
 import BackButton from "@components/BackButton";
+import PageHead from "@components/PageHead";
+import { BASE_URL, ROUTE } from "@utils/constants";
 
 const FilmDetailsPage: NextPage = (): JSX.Element => {
   const router = useRouter();
@@ -62,13 +64,20 @@ const FilmDetailsPage: NextPage = (): JSX.Element => {
 
   return (
     <>
-      <BackButton href="/" />
+      <BackButton />
+
+      <PageHead
+        title="Star Wars - Films"
+        description="Films Page Description"
+        url={`${BASE_URL}${ROUTE.FILMS}/${id}`}
+      />
 
       <Layout maxWidth="960px">
         <Box mt={8} mb={32}>
           <Card
-            py={4}
+            pt={4}
             px={1}
+            pb={10}
             bg="hsla(208, 31%, 12%, 70%)"
             borderRadius="8px"
             backgroundImage="radial-gradient(circle, hsla(0, 0%, 100%, 10%), hsla(0, 0%, 100%, 10%) 1px, hsla(208, 31%, 12%, 70%) 1px, hsla(208, 31%, 12%, 70%))"

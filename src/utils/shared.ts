@@ -20,10 +20,6 @@ export const toTitleCase = (str: string): string => {
 };
 
 export const getFilmCover = (id: number | string): string => {
-  if (!id) {
-    return `DEFAULT_URL`;
-  }
-
   return `${FILM_COVER_URL}/${id}.jpg`;
 };
 

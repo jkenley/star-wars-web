@@ -1,5 +1,17 @@
 export const BASE_API_URL: string = "https://swapi.dev/api";
 
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://star-wars-beta-opal.vercel.app/"
+    : "http://localhost:3000";
+
+export const ROUTE = {
+  HOME: "/",
+  FILMS: "/films",
+  STARSHIPS: "/starships",
+  PEOPLE: "/characters",
+};
+
 export const RESSOURCE = Object.freeze({
   STARSHIPS: "/starships",
   PEOPLE: "/people",

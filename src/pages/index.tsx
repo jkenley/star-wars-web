@@ -9,9 +9,12 @@ import StarshipList from "@components/StarshipGrid";
 import Loading from "@components/Loading";
 import useStarshipsStore from "@store/starship";
 import Emoji from "@components/Emoji";
+import PageHead from "@components/PageHead";
+import { BASE_URL, ROUTE } from "@utils/constants";
 
 const IndexPage: NextPage = (): JSX.Element => {
   const [value, setValue] = useState<string>("");
+  const [starshipResults, setStarshipResults] = useState([]);
 
   const handleChange = (event: {
     target: { value: React.SetStateAction<string> };
@@ -35,57 +38,67 @@ const IndexPage: NextPage = (): JSX.Element => {
     }
   }, [count]);
 
-  let starshipResults = [];
-
-  if (value.length === 0) {
-    starshipResults = starships;
-  } else {
-    starshipResults = matchSorter(starships, value, {
-      keys: ["name", "model", "max_atmosphering_speed", "starship_class"],
-      threshold: matchSorter.rankings.CONTAINS,
-      keepDiacritics: true
-    });
-  }
+  useEffect(() => {
+    if (value.length > 0) {
+      setStarshipResults(
+        matchSorter(starships, value, {
+          keys: ["name", "model"],
+          threshold: matchSorter.rankings.CONTAINS,
+          keepDiacritics: true
+        })
+      );
+    } else {
+      setStarshipResults(starships);
+    }
+  }, [value, starships]);
 
   return (
-    <Layout maxWidth="1200px">
-      <Center
-        as="header"
-        marginTop={16}
-        aria-label=""
-        aria-describedby=""
-        aria-details=""
-      >
-        <Heading>
-          <Logo />
-        </Heading>
-      </Center>
-      <Box as="section" aria-label="" aria-describedby="" aria-details="">
-        <SearchBox value={value} onChange={handleChange} />
-      </Box>
-      <Box as="section" aria-label="" aria-describedby="" aria-details="">
-        {loading.page === "homePage" && loading.status && <Loading />}
+    <>
+      <PageHead
+        title="Welcome to Star Wars Web App"
+        description="Star Wars Home Page Description"
+        url={`${BASE_URL}${ROUTE.HOME}`}
+      />
 
-        {starshipResults.length > 0 && (
-          <StarshipList starships={starshipResults} />
-        )}
+      <Layout maxWidth="1200px">
+        <Center
+          as="header"
+          marginTop={16}
+          aria-label=""
+          aria-describedby=""
+          aria-details=""
+        >
+          <Heading>
+            <Logo />
+          </Heading>
+        </Center>
+        <Box as="section" aria-label="" aria-describedby="" aria-details="">
+          <SearchBox value={value} onChange={handleChange} />
+        </Box>
+        <Box as="section" aria-label="" aria-describedby="" aria-details="">
+          {loading.page === "homePage" && loading.status && <Loading />}
 
-        {starshipResults.length === 0 && !loading.status && (
-          <Center mt={12}>
-            <Text
-              color="white"
-              textAlign="center"
-              fontSize="lg"
-              fontWeight="600"
-            >
-              No results found
-              <Emoji label="Starship" symbol="🛸" ml={2} />
-            </Text>
-          </Center>
-        )}
-      </Box>
-      <Box mb={16} />
-    </Layout>
+          {starshipResults.length > 0 && (
+            <StarshipList starships={starshipResults} />
+          )}
+
+          {value.length > 0 && (
+            <Center mt={12}>
+              <Text
+                color="white"
+                textAlign="center"
+                fontSize="lg"
+                fontWeight="600"
+              >
+                No results found
+                <Emoji label="Starship" symbol="🛸" ml={2} />
+              </Text>
+            </Center>
+          )}
+        </Box>
+        <Box mb={16} />
+      </Layout>
+    </>
   );
 };
 

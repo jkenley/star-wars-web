@@ -1,0 +1,17 @@
+/* Author */
+
+	Name: Kenley Jean
+  Website: https://jkenley.me
+  Github: https://github.com/jkenley
+	Twitter: https://twitter.com/jn_kenley
+  Facebook: https://www.facebook.com/jkenley
+  Instgram: https://www.instagram.com/jn.kenley
+  LinkedIn: https://www.linkedin.com/in/kenleyjean
+	From: Montreal, Canada
+
+/* SITE */
+
+	Last update: 2022/12/08
+	Language: English
+	Doctype: HTML5
+	IDE: VSCode

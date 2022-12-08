@@ -19,6 +19,8 @@ import Loading from "@components/Loading";
 import { getStarshipPicture, toTitleCase } from "@utils/shared";
 import FilmList from "@components/FilmList";
 import PeopleList from "@components/PeopleList";
+import PageHead from "@components/PageHead";
+import { BASE_URL, ROUTE } from "@utils/constants";
 
 const StarshipPage: NextPage = (): JSX.Element => {
   const router = useRouter();
@@ -50,20 +52,27 @@ const StarshipPage: NextPage = (): JSX.Element => {
 
   return (
     <>
-      <BackButton href="/" />
+      <BackButton />
+
+      <PageHead
+        title="Star Wars - Starships"
+        description="Starships Page Description"
+        url={`${BASE_URL}${ROUTE.STARSHIPS}/${id}`}
+      />
 
       <Layout maxWidth="960px">
         <Box mt={8} mb={32}>
           <Card
-            py={4}
+            pt={4}
             px={1}
+            pb={10}
             bg="hsla(208, 31%, 12%, 70%)"
             borderRadius="8px"
             backgroundImage="radial-gradient(circle, hsla(0, 0%, 100%, 10%), hsla(0, 0%, 100%, 10%) 1px, hsla(208, 31%, 12%, 70%) 1px, hsla(208, 31%, 12%, 70%))"
             backgroundSize="48px 48px"
             overflow="hidden"
           >
-            {loading.type === "starshipPage" && loading.status ? (
+            {loading.page === "starshipPage" && loading.status ? (
               <Loading />
             ) : (
               <CardBody>
@@ -147,7 +156,8 @@ const StarshipPage: NextPage = (): JSX.Element => {
                       Max Atmosphering Speed
                     </Heading>
 
-                    {starship?.max_atmosphering_speed?.toLowerCase() === "n/a" ? (
+                    {starship?.max_atmosphering_speed?.toLowerCase() ===
+                    "n/a" ? (
                       <Text as="span" display="inline-block" mt="2">
                         &#8212;
                       </Text>

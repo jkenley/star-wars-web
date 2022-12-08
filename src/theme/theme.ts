@@ -4,7 +4,6 @@ const theme = extendTheme({
   colors: {
     transparent: 'transparent',
     black: '#000',
-    kenley: '#FFC107',
     white: '#fff',
   },
 
