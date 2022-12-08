@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
+
+/* Box sizing rules */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+::selection {
+    background-color: var(--selection-background-color, var(--color-primary));
+    color: var(--selection-text-color, white);
+    -webkit-text-fill-color: var(--selection-text-color) !important;
+    background-image: none !important;
+    background-clip: revert !important;
+    text-shadow: none !important;
+}
+
+
+/* Remove default margin */
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+
+/* Set core root defaults */
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+
+/* Set core body defaults */
+
+html {
+    line-height: 1.5;
+    direction: ltr;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: none;
+    font-feature-settings: "liga" 0;
+}
+
+body {
+    font-style: normal;
+    font-kerning: normal;
+    font-synthesis: none;
+    text-align: left;
+    line-break: auto;
+    word-break: normal;
+    word-spacing: normal;
+    white-space: normal;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-decoration: none;
+    text-transform: none;
+    text-rendering: optimizeSpeed;
+    -moz-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-feature-settings: kern;
+    -webkit-font-feature-settings: kern;
+    font-feature-settings: kern;
+    /* background: #0F1116 !important; */
+    background-color: #0e141b !important;
+}
+
+
+/* A elements that don't have a class get default styles */
+
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+    color: currentColor;
+}
+
+main:focus {
+    outline: none;
+}
+
+[href]:hover {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.3;
+}
+
+
+/* Make images easier to work with */
+
+img,
+picture {
+    border: 0;
+    vertical-align: middle;
+    max-width: 100%;
+    /* display: block; */
+    display: inline-block;
+}
+
+img {
+    border: 0;
+    max-width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    width: 50%;
+}
+
+
+/* Inherit fonts for inputs and buttons */
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
