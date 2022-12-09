@@ -1,7 +1,7 @@
 {
     "name": "star-wars-web",
     "version": "0.1.0",
-    "main": "N/A",
+    "main": "/",
     "description": "Star Wars Web",
     "license": "MIT",
     "repository": "https://github.com/jkenley/star-wars-web.git",

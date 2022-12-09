@@ -6,7 +6,7 @@
   </a>
 </p>
 
-<p align="center">Star Wars is a multi-genre mythology and multimedia franchise created by George Lucas in 1976. Comprising movies, novels, comics, video games, toys, and numerous television series, the Star Wars franchise employs archetypal motifs common to religions, classical mythology, and political climax, as well as musical motifs of those same aspects.
+<p align="center">Star Wars is a multi-genre mythology and multimedia franchise created by George Lucas in 1976. Comprising movies, novels, comics, video games, toys, and numerous television series.
   <a href="https://starwars.fandom.com/wiki/Star_Wars">Read more here.</a>
 </p>
 
@@ -56,20 +56,20 @@ You can get Star Wars web app running by following the steps below:
 
 ## Contributing
 
-Contributions, issues, and feature requests are welcome!
+Contributions, issues and feature requests are welcome.
 
 Contributions are what make the open source community an amazing place to learn, be inspired, and create. All your contributions are **greatly appreciated**.
 
 If you have a suggestion that could improve this version, please fork the repository and create a download request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/amazing_features`)
-3. Commit your Changes (`git commit -m 'Add some amazing_features'`)
-4. Push to the Branch (`git push origin feature/amazing_features`)
-5. Open a Pull Request
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing_features`)
+3. Commit your changes (`git commit -m 'Add some amazing_features'`)
+4. Push to the branch (`git push origin feature/amazing_features`)
+5. Open a pull request
 
-See the [CONTRIBUTING](./CONTRIBUTING) file for contribution information.
+See the [CONTRIBUTING](./CONTRIBUTING.md) file for contribution information.
 
 ## License
 
