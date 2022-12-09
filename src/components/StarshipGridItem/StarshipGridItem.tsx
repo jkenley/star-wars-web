@@ -1,27 +1,17 @@
-import React, { FC } from "react";
-import {
-  Text,
-  Card,
-  Heading,
-  CardBody,
-  Stack,
-  StackDivider,
-  Box,
-  LinkBox,
-  LinkOverlay,
-  Center
-} from "@chakra-ui/react";
-import Link from "next/link";
-import { toTitleCase } from "@utils/shared";
-import StarRating from "@components/StarRating";
+import React, { FC } from 'react'
+import { Text, Card, Heading, CardBody, Stack, StackDivider, Box, LinkBox, LinkOverlay, Center } from '@chakra-ui/react'
+import Link from 'next/link'
+import { toTitleCase } from '@utils/shared'
+import StarRating from '@components/StarRating'
+import type { Starship } from '../../types/starship'
 
 type StarshipGridItemProps = {
-  starship: any;
-};
+  starship: Starship
+}
 
 const StarshipGridItem: FC<StarshipGridItemProps> = ({ starship }) => {
-  const url = starship.url;
-  const id = url.split("/").at(-2);
+  const url = starship.url
+  const id = url.split('/').at(-2)
 
   return (
     <LinkBox>
@@ -36,8 +26,7 @@ const StarshipGridItem: FC<StarshipGridItemProps> = ({ starship }) => {
             borderRadius="8px"
             backgroundImage="radial-gradient(circle, hsla(0, 0%, 100%, 10%), hsla(0, 0%, 100%, 10%) 1px, hsla(208, 31%, 12%, 70%) 1px, hsla(208, 31%, 12%, 70%))"
             backgroundSize="48px 48px"
-            overflow="hidden"
-          >
+            overflow="hidden">
             <CardBody>
               <Center
                 height="150px"
@@ -47,17 +36,13 @@ const StarshipGridItem: FC<StarshipGridItemProps> = ({ starship }) => {
                 backgroundSize="cover"
               />
 
-              <Stack
-                mt={6}
-                divider={<StackDivider borderColor="hsla(0, 0%, 100%, 65%)" />}
-                spacing={4}
-              >
+              <Stack mt={6} divider={<StackDivider borderColor="hsla(0, 0%, 100%, 65%)" />} spacing={4}>
                 <Box>
                   <Heading size="xs" textTransform="uppercase" color="white">
                     Name
                   </Heading>
                   <Text pt="2" fontSize="sm" color="hsla(0, 0%, 100%, 90%)">
-                    {toTitleCase(starship.name)}
+                    {toTitleCase(starship?.name)}
                   </Text>
                 </Box>
                 <Box>
@@ -65,7 +50,7 @@ const StarshipGridItem: FC<StarshipGridItemProps> = ({ starship }) => {
                     Model
                   </Heading>
                   <Text pt="2" fontSize="sm" color="hsla(0, 0%, 100%, 90%)">
-                    {toTitleCase(starship.model)}
+                    {toTitleCase(starship?.model)}
                   </Text>
                 </Box>
                 <Box>
@@ -73,7 +58,7 @@ const StarshipGridItem: FC<StarshipGridItemProps> = ({ starship }) => {
                     Manufacturer
                   </Heading>
                   <Text pt="2" fontSize="sm" color="hsla(0, 0%, 100%, 90%)">
-                    {toTitleCase(starship.manufacturer)}
+                    {toTitleCase(starship?.manufacturer)}
                   </Text>
                 </Box>
                 <Box>
@@ -81,14 +66,14 @@ const StarshipGridItem: FC<StarshipGridItemProps> = ({ starship }) => {
                     Starship class
                   </Heading>
                   <Text pt="2" fontSize="sm" color="hsla(0, 0%, 100%, 90%)">
-                    {toTitleCase(starship.starship_class)}
+                    {toTitleCase(starship?.starship_class)}
                   </Text>
                 </Box>
                 <Box>
                   <Heading size="sm" textTransform="uppercase" color="white">
                     Hyperdrive rating
                   </Heading>
-                  <StarRating value={starship.hyperdrive_rating} />
+                  <StarRating value={starship?.hyperdrive_rating} />
                 </Box>
               </Stack>
             </CardBody>
@@ -96,7 +81,7 @@ const StarshipGridItem: FC<StarshipGridItemProps> = ({ starship }) => {
         </LinkOverlay>
       </Link>
     </LinkBox>
-  );
-};
+  )
+}
 
-export default StarshipGridItem;
+export default StarshipGridItem

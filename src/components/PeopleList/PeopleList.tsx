@@ -1,58 +1,54 @@
-import React, { FC, useEffect, useCallback } from "react";
-import { SimpleGrid, Box, Flex, Text, Avatar, Spinner } from "@chakra-ui/react";
-import Link from "next/link";
-import { LeftLoading } from "@components/Loading";
-import { toTitleCase } from "@utils/shared";
-import usePeopleStore from "@store/people";
-import { getPeoplePicture } from "@utils/shared";
+import React, { FC, useEffect, useCallback } from 'react'
+import { SimpleGrid, Box, Flex, Text, Center } from '@chakra-ui/react'
+import Link from 'next/link'
+import Loading from '@components/Loading'
+import { toTitleCase } from '@utils/shared'
+import usePeopleStore from '@store/people'
+import { getPeoplePicture } from '@utils/shared'
+import Squircle from '@components/Squircle'
 
 type PeopleListProps = {
-  people: string[] | number[];
-  [props: string]: any;
-};
+  people: string[] | number[]
+  [props: string]: any
+}
 
 const PeopleList: FC<PeopleListProps> = ({ people, ...props }) => {
-  const characterIds = people;
+  // Load state from people store
+  const { filmCharacters, getFilmCharacters, loading } = usePeopleStore((state: any) => ({
+    filmCharacters: state.filmCharacters,
+    getFilmCharacters: state.getFilmCharacters,
+    loading: state.loading,
+  }))
 
-  const { filmCharacters, getFilmCharacters, loading } = usePeopleStore(
-    (state: any) => ({
-      filmCharacters: state.filmCharacters,
-      getFilmCharacters: state.getFilmCharacters,
-      loading: state.loading
-    })
-  );
+  const characterIds = people
 
   const onItemIdChange = useCallback(
-    (characterIds) => {
+    characterIds => {
       if (characterIds) {
-        getFilmCharacters(characterIds);
+        getFilmCharacters(characterIds)
       }
     },
-    [characterIds]
-  );
+    [getFilmCharacters],
+  )
 
   useEffect(() => {
-    onItemIdChange(characterIds);
-  }, [characterIds]);
+    onItemIdChange(characterIds)
+  }, [characterIds, onItemIdChange])
 
   return (
     <Box {...props}>
-      {loading.page === "filmPage" && loading.status ? (
-        <LeftLoading />
+      {loading.page === 'filmPage' && loading.status ? (
+        <Center>
+          <Loading size="md" />
+        </Center>
       ) : (
-        <SimpleGrid minChildWidth="250px" spacing={8}>
+        <SimpleGrid minChildWidth="250px" spacing={4}>
           {filmCharacters?.map(({ name, id }) => (
-            <Box height="100px" key={id}>
+            <Box height="150px" key={`${name}-${id}`}>
               <Flex direction="column" justify="center" align="center">
                 <Link href={`/characters/${id}`} passHref>
                   <a>
-                    <Avatar
-                      size="md"
-                      title={name}
-                      border="2px solid #ffc107"
-                      name={name}
-                      src={`${getPeoplePicture(id)}`}
-                    />
+                    <Squircle url={getPeoplePicture(id)} label={name} />
                   </a>
                 </Link>
                 <Box mt={3}>
@@ -70,7 +66,7 @@ const PeopleList: FC<PeopleListProps> = ({ people, ...props }) => {
         </SimpleGrid>
       )}
     </Box>
-  );
-};
+  )
+}
 
-export default PeopleList;
+export default PeopleList

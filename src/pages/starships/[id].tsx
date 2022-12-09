@@ -1,54 +1,40 @@
-import React, { useEffect } from "react";
-import {
-  Box,
-  Card,
-  CardBody,
-  Heading,
-  Stack,
-  Text,
-  Center,
-  StackDivider
-} from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { NextPage } from "next";
-import useStarshipsStore from "@store/starship";
-import Layout from "@components/Layout";
-import StarRating from "@components/StarRating";
-import BackButton from "@components/BackButton";
-import Loading from "@components/Loading";
-import { getStarshipPicture, toTitleCase } from "@utils/shared";
-import FilmList from "@components/FilmList";
-import PeopleList from "@components/PeopleList";
-import PageHead from "@components/PageHead";
-import { BASE_URL, ROUTE } from "@utils/constants";
+import React, { useEffect } from 'react'
+import { Box, Card, CardBody, Heading, Stack, Text, Center, StackDivider } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import { NextPage } from 'next'
+import useStarshipsStore from '@store/starship'
+import Layout from '@components/Layout'
+import StarRating from '@components/StarRating'
+import BackButton from '@components/BackButton'
+import Loading from '@components/Loading'
+import { getStarshipPicture, toTitleCase } from '@utils/shared'
+import FilmList from '@components/FilmList'
+import PeopleList from '@components/PeopleList'
+import PageHead from '@components/PageHead'
+import { BASE_URL, ROUTE } from '@utils/constants'
 
 const StarshipPage: NextPage = (): JSX.Element => {
-  const router = useRouter();
-  const { id } = router.query;
+  const router = useRouter()
+  const { id } = router.query
 
-  const { starship, getStarshipById, loading } = useStarshipsStore(
-    (state: any) => ({
-      starship: state.starship,
-      getStarshipById: state.getStarshipById,
-      loading: state.loading
-    })
-  );
+  // Load state from starship store
+  const { starship, getStarshipById, loading } = useStarshipsStore((state: any) => ({
+    starship: state.starship,
+    getStarshipById: state.getStarshipById,
+    loading: state.loading,
+  }))
 
-  const pilotsIds = starship?.pilots?.map((pilot: string) =>
-    Number(pilot.split("/").at(-2))
-  );
+  const pilotsIds = starship?.pilots?.map((pilot: string) => Number(pilot.split('/').at(-2)))
 
-  const filmsIds = starship?.films?.map((film: string) =>
-    Number(film.split("/").at(-2))
-  );
+  const filmsIds = starship?.films?.map((film: string) => Number(film.split('/').at(-2)))
 
   useEffect(() => {
     if (router.isReady) {
-      getStarshipById(id);
+      getStarshipById(id)
     }
-  }, [id]);
+  }, [getStarshipById, id, router.isReady])
 
-  if (!id) return null;
+  if (!id) return null
 
   return (
     <>
@@ -70,33 +56,23 @@ const StarshipPage: NextPage = (): JSX.Element => {
             borderRadius="8px"
             backgroundImage="radial-gradient(circle, hsla(0, 0%, 100%, 10%), hsla(0, 0%, 100%, 10%) 1px, hsla(208, 31%, 12%, 70%) 1px, hsla(208, 31%, 12%, 70%))"
             backgroundSize="48px 48px"
-            overflow="hidden"
-          >
-            {loading.page === "starshipPage" && loading.status ? (
-              <Loading />
+            overflow="hidden">
+            {loading.page === 'starshipPage' && loading.status ? (
+              <Center mt={8}>
+                <Loading size="lg" />
+              </Center>
             ) : (
               <CardBody>
                 <Center
                   height="350px"
                   borderRadius="10px"
                   backgroundImage={`linear-gradient(hsl(0, 0%, 0%, 0%), hsl(0, 0%, 0%, 0%), hsla(45, 100%, 51%, 10%)), url(${getStarshipPicture(
-                    Number(id)
+                    Number(id),
                   )})`}
                 />
-                <Stack
-                  divider={
-                    <StackDivider borderColor="hsla(0, 0%, 100%, 65%)" />
-                  }
-                  spacing={6}
-                  color="white"
-                >
+                <Stack divider={<StackDivider borderColor="hsla(0, 0%, 100%, 65%)" />} spacing={6} color="white">
                   <Box mt={8} mb={2}>
-                    <Heading
-                      size="lg"
-                      textTransform="uppercase"
-                      color="#ffc107"
-                      textAlign="center"
-                    >
+                    <Heading size="lg" textTransform="uppercase" color="#ffc107" textAlign="center">
                       {starship.name}
                     </Heading>
                   </Box>
@@ -156,8 +132,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                       Max Atmosphering Speed
                     </Heading>
 
-                    {starship?.max_atmosphering_speed?.toLowerCase() ===
-                    "n/a" ? (
+                    {starship?.max_atmosphering_speed?.toLowerCase() === 'n/a' ? (
                       <Text as="span" display="inline-block" mt="2">
                         &#8212;
                       </Text>
@@ -183,7 +158,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                       Number of passengers
                     </Heading>
 
-                    {starship?.passengers?.toLowerCase() === "n/a" ? (
+                    {starship?.passengers?.toLowerCase() === 'n/a' ? (
                       <Text as="span" display="inline-block" mt="2">
                         &#8212;
                       </Text>
@@ -267,7 +242,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
         </Box>
       </Layout>
     </>
-  );
-};
+  )
+}
 
-export default StarshipPage;
+export default StarshipPage

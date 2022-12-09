@@ -1,69 +1,58 @@
-import React, { FC, useEffect, useCallback } from "react";
-import { SimpleGrid, Box, Flex, Text, Avatar } from "@chakra-ui/react";
-import useStarshipStore from "@store/starship";
-import { getStarship2Picture } from "@utils/shared";
-import Link from "next/link";
-import { toTitleCase } from "@utils/shared";
-import { LeftLoading } from "@components/Loading";
+import React, { FC, useEffect, useCallback } from 'react'
+import { SimpleGrid, Box, Flex, Text, Avatar, Center } from '@chakra-ui/react'
+import useStarshipStore from '@store/starship'
+import { getStarship2Picture } from '@utils/shared'
+import Link from 'next/link'
+import { toTitleCase } from '@utils/shared'
+import Loading from '@components/Loading'
+import Squircle from '@components/Squircle'
 
 type StarshipListProps = {
-  starshipIds: string[] | number[];
-  [props: string]: any;
-};
+  starshipIds: string[] | number[]
+  [props: string]: any
+}
 
-const StarshipList: FC<StarshipListProps> = ({
-  starshipIds,
-  ...props
-}): JSX.Element => {
-  const { filmStarships, getFilmStarships, loading } = useStarshipStore(
-    (state: any) => ({
-      filmStarships: state.filmStarships,
-      getFilmStarships: state.getFilmStarships,
-      loading: state.loading
-    })
-  );
+const StarshipList: FC<StarshipListProps> = ({ starshipIds, ...props }): JSX.Element => {
+  // Load state from starship store
+  const { filmStarships, getFilmStarships, loading } = useStarshipStore((state: any) => ({
+    filmStarships: state.filmStarships,
+    getFilmStarships: state.getFilmStarships,
+    loading: state.loading,
+  }))
 
   const onItemIdChange = useCallback(
-    (starshipIds) => {
+    starshipIds => {
       if (starshipIds) {
-        getFilmStarships(starshipIds);
+        getFilmStarships(starshipIds)
       }
     },
-    [starshipIds]
-  );
+    [getFilmStarships],
+  )
 
   useEffect(() => {
-    onItemIdChange(starshipIds);
-  }, [starshipIds]);
+    onItemIdChange(starshipIds)
+  }, [onItemIdChange, starshipIds])
 
   return (
     <Box {...props}>
-      {loading.page === "filmPage" && loading.status ? (
-        <LeftLoading />
+      {loading.page === 'filmPage' && loading.status ? (
+        <Center>
+          <Loading size="md" />
+        </Center>
       ) : (
-        <SimpleGrid minChildWidth="250px" spacing={8}>
+        <SimpleGrid minChildWidth="250px" spacing={4}>
           {filmStarships?.map(({ name, id }) => (
-            <Box height="100px" key={id}>
+            <Box height="150px" key={`${name}-${id}`}>
               <Flex direction="column" justify="center" align="center">
                 <Link href={`/starships/${id}`} passHref>
                   <a>
-                    <Avatar
-                      size="md"
-                      title={name}
-                      border="2px solid #ffc107"
-                      name={name}
-                      src={`${getStarship2Picture(id)}`}
-                    />
+                    <Squircle url={getStarship2Picture(id)} label={name} />
                   </a>
                 </Link>
                 <Box mt={3}>
                   <Link href={`/starships/${id}`} passHref>
                     <a>
-                      <Text
-                        fontWeight="500"
-                        fontSize=".95rem"
-                        textAlign="center"
-                      >
+                      <Text fontWeight="500" fontSize=".95rem" textAlign="center">
                         {toTitleCase(name)}
                       </Text>
                     </a>
@@ -75,7 +64,7 @@ const StarshipList: FC<StarshipListProps> = ({
         </SimpleGrid>
       )}
     </Box>
-  );
-};
+  )
+}
 
-export default StarshipList;
+export default StarshipList

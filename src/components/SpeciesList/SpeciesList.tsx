@@ -1,56 +1,51 @@
-import React, { FC, useEffect, useCallback } from "react";
-import { SimpleGrid, Box, Flex, Text, Avatar } from "@chakra-ui/react";
-import useSpeciesStore from "@store/species";
-import { getSpeciesPicture } from "@utils/shared";
-import Link from "next/link";
-import { toTitleCase } from "@utils/shared";
-import { LeftLoading } from "@components/Loading";
+import React, { FC, useEffect, useCallback } from 'react'
+import { SimpleGrid, Box, Flex, Text, Center } from '@chakra-ui/react'
+import Link from 'next/link'
+import Loading from '@components/Loading'
+import Squircle from '@components/Squircle'
+import useSpeciesStore from '@store/species'
+import { getSpeciesPicture, toTitleCase } from '@utils/shared'
 
 type SpeciesListProps = {
-  speciesIds: string[] | number[];
-  [props: string]: any;
-};
+  speciesIds: string[] | number[]
+  [props: string]: any
+}
 
-const SpeciesList: FC<SpeciesListProps> = ({ speciesIds, ...props }) => {
-  const { filmSpecies, getFilmSpecies, loading } = useSpeciesStore(
-    (state: any) => ({
-      filmSpecies: state.filmSpecies,
-      getFilmSpecies: state.getFilmSpecies,
-      loading: state.loading
-    })
-  );
+const SpeciesList: FC<SpeciesListProps> = ({ speciesIds, ...props }): JSX.Element => {
+  // Load state from species store
+  const { filmSpecies, getFilmSpecies, loading } = useSpeciesStore((state: any) => ({
+    filmSpecies: state.filmSpecies,
+    getFilmSpecies: state.getFilmSpecies,
+    loading: state.loading,
+  }))
 
   const onItemIdChange = useCallback(
-    (speciesIds) => {
+    speciesIds => {
       if (speciesIds) {
-        getFilmSpecies(speciesIds);
+        getFilmSpecies(speciesIds)
       }
     },
-    [speciesIds]
-  );
+    [getFilmSpecies],
+  )
 
   useEffect(() => {
-    onItemIdChange(speciesIds);
-  }, [speciesIds]);
+    onItemIdChange(speciesIds)
+  }, [onItemIdChange, speciesIds])
 
   return (
     <Box {...props}>
-      {loading.page === "filmPage" && loading.status ? (
-        <LeftLoading />
+      {loading.page === 'filmPage' && loading.status ? (
+        <Center>
+          <Loading size="md" />
+        </Center>
       ) : (
-        <SimpleGrid minChildWidth="250px" spacing={8}>
+        <SimpleGrid minChildWidth="250px" spacing={4}>
           {filmSpecies?.map(({ name, id }) => (
-            <Box height="100px" key={id}>
+            <Box height="150px" key={`${name}-${id}`}>
               <Flex direction="column" justify="center" align="center">
                 <Link href="#" passHref>
                   <a>
-                    <Avatar
-                      size="md"
-                      title={name}
-                      border="2px solid #ffc107"
-                      name={name}
-                      src={`${getSpeciesPicture(id)}`}
-                    />
+                    <Squircle url={getSpeciesPicture(id)} label={name} />
                   </a>
                 </Link>
                 <Box mt={3}>
@@ -68,7 +63,7 @@ const SpeciesList: FC<SpeciesListProps> = ({ speciesIds, ...props }) => {
         </SimpleGrid>
       )}
     </Box>
-  );
-};
+  )
+}
 
-export default SpeciesList;
+export default SpeciesList

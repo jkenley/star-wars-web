@@ -1,9 +1,9 @@
-import React from "react";
-import { Box, Center, Heading, Text } from "@chakra-ui/react";
-import Layout from "@components/Layout";
-import Link from "next/link";
-import { ROUTE } from "@utils/constants";
-import Emoji from "@components/Emoji";
+import React from 'react'
+import { Box, Center, Heading, Text } from '@chakra-ui/react'
+import Layout from '@components/Layout'
+import Link from 'next/link'
+import { ROUTE } from '@utils/constants'
+import Emoji from '@components/Emoji'
 
 const Custom404 = (): JSX.Element => {
   return (
@@ -15,11 +15,7 @@ const Custom404 = (): JSX.Element => {
             <br />
             <Text as="span">404</Text>
           </Heading>
-          <Text
-            color="hsl(0, 0%, 100%, 50%)"
-            fontSize="1.2rem"
-            textAlign="center"
-          >
+          <Text color="hsl(0, 0%, 100%, 50%)" fontSize="1.2rem" textAlign="center">
             Oops, That page is gone !
           </Text>
           <Link href={`${ROUTE.HOME}`} passHref>
@@ -32,7 +28,7 @@ const Custom404 = (): JSX.Element => {
         </Box>
       </Center>
     </Layout>
-  );
-};
+  )
+}
 
-export default Custom404;
+export default Custom404

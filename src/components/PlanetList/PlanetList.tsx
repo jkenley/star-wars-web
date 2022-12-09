@@ -1,56 +1,51 @@
-import React, { FC, useEffect, useCallback } from "react";
-import { SimpleGrid, Box, Flex, Text, Avatar } from "@chakra-ui/react";
-import usePlanetStore from "@store/planet";
-import { getPlanetPicture } from "@utils/shared";
-import Link from "next/link";
-import { toTitleCase } from "@utils/shared";
-import { LeftLoading } from "@components/Loading";
+import React, { FC, useEffect, useCallback } from 'react'
+import { SimpleGrid, Box, Flex, Text, Center } from '@chakra-ui/react'
+import Link from 'next/link'
+import Loading from '@components/Loading'
+import Squircle from '@components/Squircle'
+import { toTitleCase, getPlanetPicture } from '@utils/shared'
+import usePlanetStore from '@store/planet'
 
 type PlanetListProps = {
-  planetIds: string[] | number[];
-  [props: string]: any;
-};
+  planetIds: string[] | number[]
+  [props: string]: any
+}
 
 const PlanetList: FC<PlanetListProps> = ({ planetIds, ...props }) => {
-  const { filmPlanets, getFilmPlanets, loading } = usePlanetStore(
-    (state: any) => ({
-      filmPlanets: state.filmPlanets,
-      getFilmPlanets: state.getFilmPlanets,
-      loading: state.loading
-    })
-  );
+  // Load state from planet store
+  const { filmPlanets, getFilmPlanets, loading } = usePlanetStore((state: any) => ({
+    filmPlanets: state.filmPlanets,
+    getFilmPlanets: state.getFilmPlanets,
+    loading: state.loading,
+  }))
 
   const onItemIdChange = useCallback(
-    (planetIds) => {
+    planetIds => {
       if (planetIds) {
-        getFilmPlanets(planetIds);
+        getFilmPlanets(planetIds)
       }
     },
-    [planetIds]
-  );
+    [getFilmPlanets],
+  )
 
   useEffect(() => {
-    onItemIdChange(planetIds);
-  }, [planetIds]);
+    onItemIdChange(planetIds)
+  }, [onItemIdChange, planetIds])
 
   return (
     <Box {...props}>
-      {loading.page === "filmPage" && loading.status ? (
-        <LeftLoading />
+      {loading.page === 'filmPage' && loading.status ? (
+        <Center>
+          <Loading size="md" />
+        </Center>
       ) : (
-        <SimpleGrid minChildWidth="250px" spacing={8}>
+        <SimpleGrid minChildWidth="250px" spacing={4}>
           {filmPlanets?.map(({ name, id }) => (
-            <Box height="100px" key={id}>
+            <Box height="150px" key={`${name}-${id}`}>
               <Flex direction="column" justify="center" align="center">
                 <Link href="#" passHref>
                   <a>
-                    <Avatar
-                      size="md"
-                      title={name}
-                      border="2px solid #ffc107"
-                      name={name}
-                      src={`${getPlanetPicture(id)}`}
-                    />
+                    <Squircle url={getPlanetPicture(id)} label={name} />
                   </a>
                 </Link>
                 <Box mt={3}>
@@ -68,7 +63,7 @@ const PlanetList: FC<PlanetListProps> = ({ planetIds, ...props }) => {
         </SimpleGrid>
       )}
     </Box>
-  );
-};
+  )
+}
 
-export default PlanetList;
+export default PlanetList

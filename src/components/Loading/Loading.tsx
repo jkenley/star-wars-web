@@ -1,16 +1,12 @@
-import React from "react";
-import { Center, Spinner } from "@chakra-ui/react";
+import React, { FC } from 'react'
+import { Spinner } from '@chakra-ui/react'
 
-const Loading = (): JSX.Element => (
-  <Center mt={8}>
-    <Spinner
-      emptyColor="hsla(208, 31%, 12%, 100%)"
-      color="#ffc107"
-      thickness="5px"
-      speed="0.65s"
-      size="lg"
-    />
-  </Center>
-);
+type LoadingProps = {
+  [props: string]: any
+}
 
-export default Loading;
+const Loading: FC<LoadingProps> = ({ ...props }): JSX.Element => (
+  <Spinner emptyColor="hsla(208, 31%, 12%, 100%)" color="#ffc107" thickness="3px" speed="0.65s" {...props} />
+)
+
+export default Loading

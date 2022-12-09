@@ -1,26 +1,19 @@
-import React, { FC } from "react";
-import { Box, Input } from "@chakra-ui/react";
-import { css } from "@emotion/react";
+import React, { FC } from 'react'
+import { Box, Input } from '@chakra-ui/react'
+import { css } from '@emotion/react'
 
 type SearchBoxProps = {
-  value: string;
-  onChange: (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => void;
-};
+  value: string
+  onChange: (event: { target: { value: React.SetStateAction<string> } }) => void
+}
 
 const SearchBox: FC<SearchBoxProps> = ({ value, onChange }): JSX.Element => (
   <Box css={styles}>
     <Box marginTop={8}>
-      <Input
-        value={value}
-        onChange={onChange}
-        type="text"
-        placeholder="Search starship by name or model"
-      />
+      <Input value={value} onChange={onChange} type="text" placeholder="Search starship by name or model" />
     </Box>
   </Box>
-);
+)
 
 const styles = css`
   input {
@@ -48,6 +41,6 @@ const styles = css`
       opacity: 0.8;
     }
   }
-`;
+`
 
-export default SearchBox;
+export default SearchBox
