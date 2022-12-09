@@ -1,3 +1,5 @@
+// Types for Planet entity
+
 export type Planet = {
   name: string
   rotation_period: string

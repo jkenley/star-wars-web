@@ -92,7 +92,7 @@ const FilmDetailsPage: NextPage = (): JSX.Element => {
                       Episode
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {film?.episode_id}
                     </Text>
                   </Box>
@@ -102,7 +102,7 @@ const FilmDetailsPage: NextPage = (): JSX.Element => {
                       Released date
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {new Date(film?.release_date).toDateString()}
                     </Text>
                   </Box>
@@ -112,7 +112,7 @@ const FilmDetailsPage: NextPage = (): JSX.Element => {
                       Director
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {film?.director}
                     </Text>
                   </Box>
@@ -122,7 +122,7 @@ const FilmDetailsPage: NextPage = (): JSX.Element => {
                       Producer(s)
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {film?.producer}
                     </Text>
                   </Box>
@@ -132,7 +132,7 @@ const FilmDetailsPage: NextPage = (): JSX.Element => {
                       Opening crawl
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {film?.opening_crawl}
                     </Text>
                   </Box>
@@ -141,35 +141,45 @@ const FilmDetailsPage: NextPage = (): JSX.Element => {
                     <Heading size="sm" textTransform="uppercase" mb={12}>
                       Characters
                     </Heading>
-                    <PeopleList people={characterIds} mb={8} />
+                    <Box mb={8}>
+                      <PeopleList people={characterIds} />
+                    </Box>
                   </Box>
 
                   <Box>
                     <Heading size="sm" textTransform="uppercase" mb={12}>
                       Planets
                     </Heading>
-                    <PlanetList planetIds={planetIds} mb={8} />
+                    <Box mb={8}>
+                      <PlanetList planetIds={planetIds} />
+                    </Box>
                   </Box>
 
                   <Box>
                     <Heading size="sm" textTransform="uppercase" mb={12}>
                       Starships
                     </Heading>
-                    <StarshipList starshipIds={starshipIds} mb={8} />
+                    <Box mb={8}>
+                      <StarshipList starshipIds={starshipIds} />
+                    </Box>
                   </Box>
 
                   <Box>
                     <Heading size="sm" textTransform="uppercase" mb={12}>
                       Vehicles
                     </Heading>
-                    <VehicleList vehicleIds={vehicleIds} mb={8} />
+                    <Box mb={8}>
+                      <VehicleList vehicleIds={vehicleIds} />
+                    </Box>
                   </Box>
 
                   <Box>
                     <Heading size="sm" textTransform="uppercase" mb={12}>
                       Species
                     </Heading>
-                    <SpeciesList speciesIds={speciesIds} mb={8} />
+                    <Box mb={8}>
+                      <SpeciesList speciesIds={speciesIds} />
+                    </Box>
                   </Box>
                 </Stack>
               </CardBody>

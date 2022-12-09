@@ -1,3 +1,5 @@
+// Types for Film entity
+
 export type Film = {
   title: string
   episode_id: number

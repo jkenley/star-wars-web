@@ -1,3 +1,5 @@
+// Types for Vehicle entity
+
 export type Vehicle = {
   name: string
   model: string

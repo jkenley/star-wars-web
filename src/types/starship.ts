@@ -1,3 +1,5 @@
+// Types for Starship entity
+
 export type Starship = {
   name: string
   model: string

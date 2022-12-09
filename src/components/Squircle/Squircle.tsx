@@ -36,6 +36,7 @@ const styles = css`
     background-size: cover;
     background-position: 50% 20%;
     clip-path: url(#squircle);
+    -webkit-clip-path: url(#squircle);
   }
 `
 

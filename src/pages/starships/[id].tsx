@@ -82,7 +82,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                       Model
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {starship?.model}
                     </Text>
                   </Box>
@@ -91,7 +91,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                     <Heading size="sm" textTransform="uppercase">
                       Manufacturer
                     </Heading>
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {starship?.manufacturer}
                     </Text>
                   </Box>
@@ -100,20 +100,14 @@ const StarshipPage: NextPage = (): JSX.Element => {
                     <Heading size="sm" textTransform="uppercase">
                       Hyperdrive rating
                     </Heading>
-
                     <StarRating value={starship.hyperdrive_rating} />
-
-                    <Text pt="2" fontSize="md">
-                      {starship?.hyperdrive_rating}
-                    </Text>
                   </Box>
 
                   <Box>
                     <Heading size="sm" textTransform="uppercase">
                       Cost in credits
                     </Heading>
-
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {starship?.cost_in_credits} credits
                     </Text>
                   </Box>
@@ -122,7 +116,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                     <Heading size="sm" textTransform="uppercase">
                       Length
                     </Heading>
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {starship?.length}
                     </Text>
                   </Box>
@@ -133,11 +127,11 @@ const StarshipPage: NextPage = (): JSX.Element => {
                     </Heading>
 
                     {starship?.max_atmosphering_speed?.toLowerCase() === 'n/a' ? (
-                      <Text as="span" display="inline-block" mt="2">
+                      <Text as="span" display="inline-block" mt={2}>
                         &#8212;
                       </Text>
                     ) : (
-                      <Text pt="2" fontSize="md">
+                      <Text pt={2} fontSize="md">
                         {starship?.max_atmosphering_speed} km/h
                       </Text>
                     )}
@@ -148,7 +142,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                       Mimimum crew
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {starship?.crew}
                     </Text>
                   </Box>
@@ -159,11 +153,11 @@ const StarshipPage: NextPage = (): JSX.Element => {
                     </Heading>
 
                     {starship?.passengers?.toLowerCase() === 'n/a' ? (
-                      <Text as="span" display="inline-block" mt="2">
+                      <Text as="span" display="inline-block" mt={2}>
                         &#8212;
                       </Text>
                     ) : (
-                      <Text pt="2" fontSize="md">
+                      <Text pt={2} fontSize="md">
                         {starship?.passengers}
                       </Text>
                     )}
@@ -174,7 +168,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                       Cargo Capacity
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {starship?.cargo_capacity} metric tons
                     </Text>
                   </Box>
@@ -184,7 +178,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                       Consumables
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {starship?.consumables}
                     </Text>
                   </Box>
@@ -193,7 +187,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                     <Heading size="sm" textTransform="uppercase">
                       MGLT
                     </Heading>
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {starship?.MGLT}
                     </Text>
                   </Box>
@@ -203,7 +197,7 @@ const StarshipPage: NextPage = (): JSX.Element => {
                       Starship Class
                     </Heading>
 
-                    <Text pt="2" fontSize="md">
+                    <Text pt={2} fontSize="md">
                       {toTitleCase(starship?.starship_class)}
                     </Text>
                   </Box>
@@ -214,11 +208,13 @@ const StarshipPage: NextPage = (): JSX.Element => {
                     </Heading>
 
                     {pilotsIds?.length === 0 ? (
-                      <Text as="span" display="inline-block" mt="2">
+                      <Text as="span" display="inline-block" mt={2}>
                         &#8212;
                       </Text>
                     ) : (
-                      <PeopleList people={pilotsIds} mt={12} mb={8} />
+                      <Box mt={12} mb={8}>
+                        <PeopleList people={pilotsIds} />
+                      </Box>
                     )}
                   </Box>
 
@@ -228,11 +224,13 @@ const StarshipPage: NextPage = (): JSX.Element => {
                     </Heading>
 
                     {filmsIds?.length === 0 ? (
-                      <Text as="span" display="inline-block" mt="2">
+                      <Text as="span" display="inline-block" mt={2}>
                         &#8212;
                       </Text>
                     ) : (
-                      <FilmList filmsIds={filmsIds} mt={12} />
+                      <Box mt={12}>
+                        <FilmList filmsIds={filmsIds} />
+                      </Box>
                     )}
                   </Box>
                 </Stack>

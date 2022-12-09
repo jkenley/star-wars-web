@@ -1,3 +1,5 @@
+// Types for People entity
+
 export type People = {
   name: string
   height: string

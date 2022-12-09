@@ -10,7 +10,7 @@ type SearchBoxProps = {
 const SearchBox: FC<SearchBoxProps> = ({ value, onChange }): JSX.Element => (
   <Box css={styles}>
     <Box marginTop={8}>
-      <Input value={value} onChange={onChange} type="text" placeholder="Search starship by name or model" />
+      <Input value={value} onChange={onChange} type="text" placeholder="Search..." />
     </Box>
   </Box>
 )

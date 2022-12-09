@@ -5,8 +5,13 @@ import { useRouter } from 'next/router'
 const BackButton = (): JSX.Element => {
   const router = useRouter()
 
+  const handleGoBack = (event: { preventDefault: () => void }) => {
+    event.preventDefault()
+    router.back()
+  }
+
   return (
-    <Link href="#" onClick={() => router.back()}>
+    <Link href="#" onClick={handleGoBack}>
       <Circle
         title="Back to home page"
         position="fixed"

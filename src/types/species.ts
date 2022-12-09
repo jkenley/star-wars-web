@@ -1,3 +1,5 @@
+// Types for Species entity
+
 export type Species = {
   name: string
   classification: string

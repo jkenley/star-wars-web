@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import {
   Box,
@@ -26,6 +26,28 @@ import PageHead from '@components/PageHead'
 import { BASE_URL, ROUTE } from '@utils/constants'
 import { getPeoplePicture, toTitleCase } from '@utils/shared'
 import usePeopleStore from '@store/people'
+
+type CardContainerProps = {
+  children: React.ReactNode
+}
+
+const CardContainer: FC<CardContainerProps> = ({ children }) => (
+  <Card
+    mt={4}
+    border="none"
+    bg="hsla(208, 31%, 12%, 50%)"
+    borderRadius="5px"
+    backgroundImage="radial-gradient(circle, hsla(0, 0%, 100%, 10%), hsla(0, 0%, 100%, 10%) 1px, hsla(208, 31%, 12%, 70%) 1px, hsla(208, 31%, 12%, 70%))"
+    backgroundSize="48px 48px"
+    variant="outline"
+    overflow="hidden">
+    <CardBody>
+      <Stack divider={<StackDivider />} spacing={4} color="white">
+        {children}
+      </Stack>
+    </CardBody>
+  </Card>
+)
 
 const CharacterDetailsPage: NextPage = (): JSX.Element => {
   const router = useRouter()
@@ -157,104 +179,48 @@ const CharacterDetailsPage: NextPage = (): JSX.Element => {
               </Card>
 
               {filmsIds?.length > 0 && (
-                <>
-                  <Box as="br" />
-                  <Card
-                    border="none"
-                    bg="hsla(208, 31%, 12%, 50%)"
-                    borderRadius="5px"
-                    backgroundImage="radial-gradient(circle, hsla(0, 0%, 100%, 10%), hsla(0, 0%, 100%, 10%) 1px, hsla(208, 31%, 12%, 70%) 1px, hsla(208, 31%, 12%, 70%))"
-                    backgroundSize="48px 48px"
-                    variant="outline"
-                    overflow="hidden">
-                    <CardBody>
-                      <Stack divider={<StackDivider />} spacing={4} color="white">
-                        <Heading size="sm" textTransform="uppercase">
-                          Films
-                        </Heading>
+                <CardContainer>
+                  <Heading size="sm" textTransform="uppercase">
+                    Films
+                  </Heading>
 
-                        <Box mt={8} mb={4}>
-                          <FilmList filmsIds={filmsIds} />
-                        </Box>
-                      </Stack>
-                    </CardBody>
-                  </Card>
-                </>
+                  <Box mt={8} mb={4}>
+                    <FilmList filmsIds={filmsIds} />
+                  </Box>
+                </CardContainer>
               )}
 
               {starshipIds?.length > 0 && (
-                <>
-                  <Box as="br" />
-                  <Card
-                    border="none"
-                    bg="hsla(208, 31%, 12%, 50%)"
-                    borderRadius="5px"
-                    backgroundImage="radial-gradient(circle, hsla(0, 0%, 100%, 10%), hsla(0, 0%, 100%, 10%) 1px, hsla(208, 31%, 12%, 70%) 1px, hsla(208, 31%, 12%, 70%))"
-                    backgroundSize="48px 48px"
-                    variant="outline"
-                    overflow="hidden">
-                    <CardBody>
-                      <Stack divider={<StackDivider />} spacing={4} color="white">
-                        <Heading size="sm" textTransform="uppercase">
-                          Starships
-                        </Heading>
-                        <Box mt={8} mb={4}>
-                          <StarshipList starshipIds={starshipIds} />
-                        </Box>
-                      </Stack>
-                    </CardBody>
-                  </Card>
-                </>
+                <CardContainer>
+                  <Heading size="sm" textTransform="uppercase">
+                    Starships
+                  </Heading>
+                  <Box mt={8} mb={4}>
+                    <StarshipList starshipIds={starshipIds} />
+                  </Box>
+                </CardContainer>
               )}
 
               {vehicleIds?.length > 0 && (
-                <>
-                  <Box as="br" />
-                  <Card
-                    border="none"
-                    bg="hsla(208, 31%, 12%, 50%)"
-                    borderRadius="5px"
-                    backgroundImage="radial-gradient(circle, hsla(0, 0%, 100%, 10%), hsla(0, 0%, 100%, 10%) 1px, hsla(208, 31%, 12%, 70%) 1px, hsla(208, 31%, 12%, 70%))"
-                    backgroundSize="48px 48px"
-                    variant="outline"
-                    overflow="hidden">
-                    <CardBody>
-                      <Stack divider={<StackDivider />} spacing={4} color="white">
-                        <Heading size="sm" textTransform="uppercase">
-                          Vehicles
-                        </Heading>
-                        <Box mt={8} mb={4}>
-                          <VehicleList vehicleIds={vehicleIds} />
-                        </Box>
-                      </Stack>
-                    </CardBody>
-                  </Card>
-                </>
+                <CardContainer>
+                  <Heading size="sm" textTransform="uppercase">
+                    Vehicles
+                  </Heading>
+                  <Box mt={8} mb={4}>
+                    <VehicleList vehicleIds={vehicleIds} />
+                  </Box>
+                </CardContainer>
               )}
 
               {speciesIds?.length > 0 && (
-                <>
-                  <Box as="br" />
-                  <Card
-                    border="none"
-                    bg="hsla(208, 31%, 12%, 50%)"
-                    borderRadius="5px"
-                    backgroundImage="radial-gradient(circle, hsla(0, 0%, 100%, 10%), hsla(0, 0%, 100%, 10%) 1px, hsla(208, 31%, 12%, 70%) 1px, hsla(208, 31%, 12%, 70%))"
-                    backgroundSize="48px 48px"
-                    variant="outline"
-                    overflow="hidden">
-                    <CardBody>
-                      <Stack divider={<StackDivider />} spacing={4} color="white">
-                        <Heading size="sm" textTransform="uppercase">
-                          Species
-                        </Heading>
-                        <Box mt={8} mb={4}>
-                          <SpeciesList speciesIds={speciesIds} />
-                        </Box>
-                      </Stack>
-                    </CardBody>
-                  </Card>
-                </>
+                <CardContainer>
+                  <Heading size="sm" textTransform="uppercase">
+                    Species
+                  </Heading>
+                  <Box mt={8} mb={4}>
+                    <SpeciesList speciesIds={speciesIds} />
+                  </Box>
+                </CardContainer>
               )}
             </>
           )}
